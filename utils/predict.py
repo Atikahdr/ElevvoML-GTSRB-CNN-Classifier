@@ -13,9 +13,10 @@ def preprocess_image(uploaded_file):
 
     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
 
-    img = cv2.imdecode(file_bytes, 1)
+    img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
+    img = img.astype("float32") / 255.0
     img = np.expand_dims(img, axis=0)
 
     return img
@@ -26,5 +27,6 @@ def predict_image(model, image):
     preds = model.predict(image, verbose=0)
     class_id = int(np.argmax(preds))
     confidence = float(np.max(preds))
+
 
     return class_id, confidence, preds[0]
