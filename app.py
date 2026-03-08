@@ -18,7 +18,6 @@ st.set_page_config(
     layout="wide"
 )
 
-
 # LOAD CSS
 def load_css():
     with open("style.css") as f:
@@ -26,6 +25,8 @@ def load_css():
 
 load_css()
 
+# LOAD MODEL
+model = load_model("Models/CNN.h5")
 
 # TITLE
 st.markdown('<h1 class="title">🚦 Traffic Sign Classifier</h1>', unsafe_allow_html=True)
@@ -70,11 +71,6 @@ By recognizing traffic signs in real-time, AI systems can help improve **road sa
 </div>            
 </div>
 """, unsafe_allow_html=True)
-
-
-# LOAD MODEL
-model = load_model("Models/CNN.h5")
-
 
 # UPLOAD IMAGE
 st.markdown('## 📤 Upload Traffic Sign Image')
@@ -135,7 +131,7 @@ if uploaded_file is not None:
 
         if os.path.exists(icon_path):
 
-            left, center, right = st.columns([1,1,1])
+            left, center, right = st.columns([1,2,1])
             
             with center:
                 st.image(icon_path, width=250)
@@ -243,4 +239,5 @@ Developed by <b>Atikah Dwi Rizky</b>
 Deep Learning Project • Traffic Sign Recognition • CNN Model
 
 </div>
+
 """, unsafe_allow_html=True)
