@@ -38,31 +38,23 @@ AI-powered Traffic Sign Recognition using Deep Learning (CNN) trained on the
 </p>
 """, unsafe_allow_html=True)
 
-
 # APP DESCRIPTION
 st.markdown("""
 <div class="info-box">
-
 <div class="class-text">
-            
+
 ### 📌 About This Application
-
 This application demonstrates a **Deep Learning-based Traffic Sign Recognition system** powered by a **Convolutional Neural Network (CNN)** trained on the **German Traffic Sign Recognition Benchmark (GTSRB)** dataset.
-
 The system is designed to automatically identify and classify traffic signs from uploaded images.
 
 ### 🚗 Why Traffic Sign Recognition?
-
 Traffic sign detection is an essential component of:
-
 • Autonomous driving systems  
 • Intelligent transportation systems  
 • Driver assistance technologies  
-
 By recognizing traffic signs in real-time, AI systems can help improve **road safety and navigation decisions**.
 
 ### ⚙️ How It Works
-
 1️⃣ Upload an image containing a traffic sign  
 2️⃣ The CNN model extracts visual features from the image  
 3️⃣ The system predicts the most probable traffic sign class  
@@ -83,17 +75,13 @@ uploaded_file = st.file_uploader(
 confidence_percent = 0
 
 if uploaded_file is not None:
-
+    
+    uploaded_file.seek(0)
     col1, col2 = st.columns([1,1], gap="large")
-
     image = preprocess_image(uploaded_file)
-
     class_id, confidence, preds = predict_image(model, image)
-
     label = class_names[class_id]
-
     confidence_percent = confidence * 100
-
 
     # IMAGE COLUMN
     with col1:
@@ -145,9 +133,7 @@ if uploaded_file is not None:
 
 # ANALYSIS SECTION
 st.markdown("## 📊 AI Prediction Analysis")
-
 col1, col2 = st.columns([1,1], gap="large")
-
 
 # GAUGE CHART
 with col1:
@@ -190,7 +176,6 @@ with col1:
 with col2:
 
     fig_radar = go.Figure()
-
     fig_radar.add_trace(go.Scatterpolar(
         r=[confidence_percent,
            confidence_percent*0.9,
@@ -230,7 +215,6 @@ with col2:
 
     st.plotly_chart(fig_radar, use_container_width=True)
 
-
 # FOOTER
 st.markdown("""
 <div class="footer">
@@ -241,3 +225,4 @@ Deep Learning Project • Traffic Sign Recognition • CNN Model
 </div>
 
 """, unsafe_allow_html=True)
+
