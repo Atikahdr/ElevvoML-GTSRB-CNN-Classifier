@@ -26,7 +26,7 @@ def load_css():
 load_css()
 
 # LOAD MODEL
-model = load_model("Models/CNN.h5")
+model = load_model("Models/CNN.keras")
 
 # TITLE
 st.markdown('<h1 class="title">🚦 Traffic Sign Classifier</h1>', unsafe_allow_html=True)
@@ -225,4 +225,5 @@ Deep Learning Project • Traffic Sign Recognition • CNN Model
 </div>
 
 """, unsafe_allow_html=True)
+
 
